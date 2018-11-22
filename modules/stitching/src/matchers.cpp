@@ -207,6 +207,7 @@ void CpuMatcher::match(const ImageFeatures &features1, const ImageFeatures &feat
     }
     else
 #endif
+#if 0
     {
         Ptr<flann::IndexParams> indexParams = makePtr<flann::KDTreeIndexParams>();
         Ptr<flann::SearchParams> searchParams = makePtr<flann::SearchParams>();
@@ -219,6 +220,9 @@ void CpuMatcher::match(const ImageFeatures &features1, const ImageFeatures &feat
 
         matcher = makePtr<FlannBasedMatcher>(indexParams, searchParams);
     }
+#endif
+    matcher = makePtr<BFMatcher>((int)NORM_HAMMING);
+
     std::vector< std::vector<DMatch> > pair_matches;
     MatchesSet matches;
 
