@@ -53,9 +53,15 @@
 #include "opencv2/core/utility.hpp"
 
 #ifdef USE_STD_THREADS
+#ifdef __MINGW32__
+#include "mingw.thread.h"
+#include "mingw.mutex.h"
+#include "mingw.condition_variable.h"
+#else
 #include <thread>
 #include <mutex>
 #include <condition_variable>
+#endif
 #else //USE_STD_THREADS
 #include <pthread.h>
 #endif //USE_STD_THREADS
